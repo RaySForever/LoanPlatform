@@ -1,0 +1,13 @@
+server:
+  # 服务端口
+  port: 8130
+spring:
+  profiles:
+    active: dev
+  application:
+    # 服务名
+    name: service-cos
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848

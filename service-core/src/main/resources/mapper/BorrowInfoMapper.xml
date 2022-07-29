@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.raysmen.lp.core.mapper.BorrowInfoMapper">
+    <select id="selectBorrowInfoList" resultType="BorrowInfo">
+        select bi.id,bi.user_id,bi.amount,bi.period,bi.borrow_year_rate,bi.return_method,bi.money_use,bi.status,bi.create_time,bi.update_time,bi.is_deleted,
+               b.name,b.mobile
+        from borrow_info bi
+        left join borrower b on bi.user_id = b.user_id
+        where bi.is_deleted = 0
+    </select>
+</mapper>

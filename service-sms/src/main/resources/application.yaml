@@ -1,0 +1,26 @@
+server:
+  # 服务端口
+  port: 8120
+spring:
+  profiles:
+    # 环境设置
+    active: dev
+  application:
+    # 服务名
+    name: service-sms
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+feign:
+  # 开启Feign对Sentinel的支持
+  sentinel:
+    enabled: true
+  client:
+    config:
+      default:
+        # 连接超时配置：10秒
+        connectTimeout: 10000
+        # 执行超时配置：600秒
+        readTimeout: 600000

@@ -1,0 +1,8 @@
+tencentcloud:
+  cos:
+    # 以下为个人申请的信息，已脱敏
+    secret-id: appid
+    secret-key: secretkey
+    region: ap-guangzhou
+    bucket-name: bucketname
+    keys: avatar

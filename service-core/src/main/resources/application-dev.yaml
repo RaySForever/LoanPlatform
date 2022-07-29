@@ -1,0 +1,100 @@
+# 开发配置
+# debug: true
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  servlet:
+    multipart:
+      # 文件上传单个文件的最大容量
+      max-file-size: 10MB
+      # 文件上传单次请求中的最大容量
+      max-request-size: 100MB
+  datasource:
+    druid:
+      # MySQL配置
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/lp_service_core?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+      aop-patterns: xyz.raysmen.lp.*
+      # 初始连接数
+      initial-size: 10
+      # 最大连接池数量
+      max-active: 50
+      # 最小连接池数量
+      min-idle: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      maxEvictableIdleTimeMillis: 900000
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        reset-enable: false
+        url-pattern: /druid/*
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        #exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 3000
+          merge-sql: true
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false
+            alter-table-allow: false
+            rename-table-allow: false
+            create-table-allow: false
+        encoding:
+          enabled: true
+        slf4j:
+          enabled: true
+          statement-log-enabled: true
+  cache:
+    type: redis
+    redis:
+      # 全局缓存存活时间，单位：毫秒，若自定义相关configuration可能失效
+      time-to-live: 3600000
+      # 緩存前缀
+      key-prefix: CACHE_
+      # 是否缓存空值
+      cache-null-values: true
+  redis:
+    # Redis 服务器所在IP地址
+    host: localhost
+    # Redis 服务器所使用的端口号
+    port: 6379
+    database: 0
+    # 默认为空
+    #password:
+    # 最大等待时间，超时则抛出异常，否则请求一直等待
+    timeout: 3000ms
+    lettuce:
+      pool:
+        max-active: 20  #最大连接数，负值表示没有限制，默认8
+        max-wait: -1    #最大阻塞等待时间，负值表示没限制，默认-1
+        max-idle: 8     #最大空闲连接，默认8
+        min-idle: 0     #最小空闲连接，默认0
+  jackson:
+    # 注意：此处仅支持Date类，需要自定义添加序列化规则
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+mybatis-plus:
+  configuration:
+    # 输出至控制台
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 输出至slf4j，即logback
+    #log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: xyz.raysmen.lp.core.pojo.entity

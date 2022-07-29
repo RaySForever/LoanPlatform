@@ -1,0 +1,18 @@
+# 公共配置
+server:
+  port: 8110
+# debug: true
+
+spring:
+  application:
+    name: service-core
+#    admin:
+#      enabled: true
+  profiles:
+#    active: prod
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        # Nacos 服务器所在IP地址:应用端口号
+        server-addr: localhost:8848
