@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import xyz.raysmen.lp.common.result.ResponseEnum;
 
+import java.util.Objects;
+
 /**
  * CustomAssert
  * 自定义断言，模仿Spring优雅的 Assert(断言) 方式来校验业务的异常情况，消除 if else
@@ -60,16 +62,13 @@ public class CustomAssert {
     /**
      * 断言两个对象不相等
      * 如果相等，则抛出异常
-     * <p>
-     *     ATTENTION: 使用前必须保证传入的参数不为null
-     * </p>
      *
      * @param o1            断言对象
      * @param o2            断言对象
      * @param responseEnum  具体响应情况
      */
     public static void notEquals(Object o1, Object o2,  ResponseEnum responseEnum) {
-        if (o1.equals(o2)) {
+        if (Objects.equals(o1, o2)) {
             log.info("断言的两个对象相等...............");
             throw new BusinessException(responseEnum);
         }
@@ -78,16 +77,13 @@ public class CustomAssert {
     /**
      * 断言两个对象相等
      * 如果不相等，则抛出异常
-     * <p>
-     *     ATTENTION: 使用前必须保证传入的参数不为null
-     * </p>
      *
      * @param o1            断言对象
      * @param o2            断言对象
      * @param responseEnum  具体响应情况
      */
     public static void equals(Object o1, Object o2,  ResponseEnum responseEnum) {
-        if (!o1.equals(o2)) {
+        if (!Objects.equals(o1, o2)) {
             log.info("断言两个对象不相等...............");
             throw new BusinessException(responseEnum);
         }
