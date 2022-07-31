@@ -52,10 +52,10 @@ public class ApiSmsController {
         String code = RandomUtils.getSixBitRandom();
 
         // 发送短信
-        // 测试时不需要发送短信，直接在Redis内查看即可
-        //smsService.send(mobile, code);
+        // 测试时不需要发送短信，直接在 Redis 内查看即可
+        smsService.send(mobile, code);
 
-        // 向Redis存储手机号与验证码5分钟
+        // 向 Redis 存储手机号与验证码5分钟
         // 实际设置的键为 lp:sms:code::#{mobile}
         redisTemplate.opsForValue().set("lp:sms:code" + mobile, code, 5L, TimeUnit.MINUTES);
         return CustomResult.ok().message("短信发送成功");
