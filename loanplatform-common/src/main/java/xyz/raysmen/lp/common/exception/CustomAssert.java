@@ -97,7 +97,7 @@ public class CustomAssert {
      * @param responseEnum  具体响应情况
      */
     public static void notEmpty(String s, ResponseEnum responseEnum) {
-        if (StringUtils.hasLength(s)) {
+        if (!StringUtils.hasLength(s)) {
             log.info("断言的字符串类型参数为空...............");
             throw new BusinessException(responseEnum);
         }

@@ -26,11 +26,12 @@ public final class BeansConverter {
         UserInfo userInfo = new UserInfo();
 
         userInfo.setUserType(registerVO.getUserType());
+        userInfo.setEmail(registerVO.getEmail());
         userInfo.setNickName(registerVO.getMobile());
         userInfo.setName(registerVO.getMobile());
         userInfo.setMobile(registerVO.getMobile());
         userInfo.setPassword(MD5.encrypt(registerVO.getPassword()));
-        userInfo.setUserType(UserInfo.STATUS_NORMAL);
+        userInfo.setStatus(UserInfo.STATUS_NORMAL);
         // 设置一张静态资源服务器上的默认头像图片
         userInfo.setHeadImg(UserInfo.USER_AVATAR);
 

@@ -24,6 +24,6 @@ public interface CoreUserInfoClient {
      * @param mobile    手机号
      * @return          返回手机号是否已注册
      */
-    @GetMapping("/checkMobile/{mobile}")
+    @GetMapping("/api/core/userInfo/checkMobile/{mobile}")
     boolean checkMobile(@PathVariable("mobile") String mobile);
 }
